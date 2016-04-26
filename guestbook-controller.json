@@ -22,7 +22,7 @@
             "containers":[
                {
                   "name":"guestbook",
-                  "image":"gcr.io/google_containers/guestbook:v3",
+                  "image":"numidiasoftvc/guestbook:v1",
                   "ports":[
                      {
                         "name":"http-server",

@@ -1,0 +1,20 @@
+debug: true
+
+build:
+  image: golang:1.5.1
+  environment:
+    - GOPATH=/guestbook-go
+  commands: []
+
+deploy:
+  kubernetes:
+    image: quay.io/ukhomeofficedigital/drone-kubernetes:latest
+    registry: quay.io
+    replicationcontrollers:
+      - guestbook-controller.json
+    services: []
+    token: eqpPIb5jFPUzurndqZrXFM9oW1VGusqY
+    apiserver: https://169.50.103.9:6443
+    namespace: default
+    debug: false
+    tag: v0.0.$$BUILD_NUMBER
