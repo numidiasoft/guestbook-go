@@ -1,3 +1,4 @@
-image: nginx
-script:
-  - echo hello world
+build:
+  image: bitwalker/alpine-elixir-phoenix:2.0
+  commands:
+    - ls -l
