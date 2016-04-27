@@ -22,7 +22,7 @@
             "containers":[
                {
                   "name":"guestbook",
-                  "image":"numidiasoftvc/guestbook:v1",
+                  "image":"numidiasoftvc/guestbook:v2",
                   "ports":[
                      {
                         "name":"http-server",
