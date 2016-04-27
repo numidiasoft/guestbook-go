@@ -1,6 +1,3 @@
-build:
-  image: golang
-  commands:
-    - go get
-    - go build
-    - go test
+image: dockerfile/nginx
+script:
+  - echo hello world
