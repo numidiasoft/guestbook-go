@@ -24,8 +24,6 @@ deploy:
     namespace: default
     debug: true
     tag: v0.0.$$BUILD_NUMBER
-    when:
-      branch: master
 
 notify:
   slack:
