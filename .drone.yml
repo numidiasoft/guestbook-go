@@ -5,7 +5,7 @@ build:
   environment:
     - GOPATH=/guestbook-go
   commands:
-   - cat guestbook-controller.json
+   - ls -l
 
 branches:
   - master
