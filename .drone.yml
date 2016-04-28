@@ -5,8 +5,7 @@ build:
   environment:
     - GOPATH=/guestbook-go
   commands:
-   - ls -l
-   - pwd
+   - cat guestbook-controller.json
 
 deploy:
   kubernetes:
@@ -16,7 +15,15 @@ deploy:
       - guestbook-controller.json
     services: []
     token: eqpPIb5jFPUzurndqZrXFM9oW1VGusqY
-    apiserver: https://169.50.103.9:6443
+    apiserver: https://10.0.0.118:8080
     namespace: default
     debug: false
     tag: v0.0.$$BUILD_NUMBER
+
+notify:
+  slack:
+    webhook_url: $$SLACK_WEBHOOK
+    channel: ops-team
+    username: drone.io
+    template: >
+      build #{{ build.number }} finished with a {{ build.status }} status
