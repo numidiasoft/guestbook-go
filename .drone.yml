@@ -5,11 +5,19 @@ build:
   commands:
    - ls -l
    - pwd
-
+notify:
+  slack:
+    webhook_url: $$SLACK_WEBHOOK
+    channel: ops-team
+    username: drone.io
+    debug: true
+    template: >
+      build #{{ build.number }} finished with a {{ build.status }} status
+    when:
+      branch: master
 branches:
   - master
   - staging
-
 deploy:
   kubernetes:
     image: quay.io/ukhomeofficedigital/drone-kubernetes:latest
@@ -24,13 +32,3 @@ deploy:
     when:
       branch: master
 
-notify:
-  slack:
-    webhook_url: $$SLACK_WEBHOOK
-    channel: ops-team
-    username: drone.io
-    debug: true
-    template: >
-      build #{{ build.number }} finished with a {{ build.status }} status
-    when:
-      branch: master
