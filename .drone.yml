@@ -7,6 +7,10 @@ build:
   commands:
    - cat guestbook-controller.json
 
+branches:
+  - master
+  - staging
+
 deploy:
   kubernetes:
     image: quay.io/ukhomeofficedigital/drone-kubernetes:latest
@@ -20,10 +24,10 @@ deploy:
     debug: true
     tag: v0.0.$$BUILD_NUMBER
 
-#notify:
-#  slack:
-#    webhook_url: $$SLACK_WEBHOOK
-#    channel: ops-team
-#    username: drone.io
-#    template: >
-#      build #{{ build.number }} finished with a {{ build.status }} status
+notify:
+  slack:
+    webhook_url: $$SLACK_WEBHOOK
+    channel: ops-team
+    username: drone.io
+    template: >
+      build #{{ build.number }} finished with a {{ build.status }} status
