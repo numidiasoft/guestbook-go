@@ -22,7 +22,6 @@ deploy:
     token: eqpPIb5jFPUzurndqZrXFM9oW1VGusqY
     apiserver: http://10.0.0.118:8080
     namespace: default
-    debug: true
     tag: v0.0.$$BUILD_NUMBER
     when:
       branch: master
@@ -35,3 +34,5 @@ notify:
     debug: true
     template: >
       build #{{ build.number }} finished with a {{ build.status }} status
+    when:
+      branch: master
