@@ -32,5 +32,6 @@ notify:
     webhook_url: $$SLACK_WEBHOOK
     channel: ops-team
     username: drone.io
+    debug: true
     template: >
       build #{{ build.number }} finished with a {{ build.status }} status
