@@ -26,7 +26,6 @@ deploy:
     tag: v0.0.$$BUILD_NUMBER
     when:
       branch: master
-  branch: master
 
 notify:
   slack:
