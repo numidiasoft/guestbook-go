@@ -6,6 +6,7 @@ build:
     - GOPATH=/guestbook-go
   commands:
    - ls -l
+   - pwd
 
 branches:
   - master
