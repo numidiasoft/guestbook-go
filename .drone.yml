@@ -5,7 +5,7 @@ build:
   commands:
    - cd _src/ && go get && go build -o ../bin/guestbook
    - cd .. && cp _src/guestbook/Dockerfile .
-   - pwd
+   - cat Dockerfile
 
 branches:
   - master
