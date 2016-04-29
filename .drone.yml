@@ -49,4 +49,4 @@ notify:
     template: >
       build #{{ build.number }} finished with a {{ build.status }} status
     when:
-      branch: master
+      branch: ["master", "staging"]
