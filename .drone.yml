@@ -11,18 +11,18 @@ branches:
   - master
   - staging
 
-#publish:
-#   docker:
-#     username: $$DOCKER_USERNAME
-#     password: $$DOCKER_PASS
-#     email: $$DOCKER_EMAIL
-#     repo: numidasoft/guestbook
-#     tag:
-#     - "latest"
-#     - "$$BUILD_NUMBER"
-#     file:
-#     when:
-#       branch: ["master", "staging"]
+publish:
+   docker:
+     username: $$DOCKER_USERNAME
+     password: $$DOCKER_PASS
+     email: $$DOCKER_EMAIL
+     repo: numidasoftvc/guestbook
+     tag:
+     - "latest"
+     - "$$BUILD_NUMBER"
+     file:
+     when:
+       branch: ["master", "staging"]
 
 deploy:
   kubernetes:
