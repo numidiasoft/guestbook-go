@@ -36,9 +36,8 @@ deploy:
     namespace: default
     debug: false
     tag: v0.0.$$BUILD_NUMBER
-    tag: v0.0.$$BUILD_NUMBER
     when:
-      branch: staging
+      branch: master
 
 notify:
   slack:
@@ -47,6 +46,6 @@ notify:
     username: drone.io
     debug: true
     template: >
-      build #{{ build.number }} finished with a {{ build.status }} status
+      build #{{ build.number }} of {{build.branch}} branch finished with a {{ build.status }} status
     when:
       branch: staging
