@@ -1,10 +1,45 @@
 build:
-  image: golang:1.5.1
+  image: golang:1.6.1
   environment:
     - GOPATH=/guestbook-go
   commands:
+   - cd _src/ && go get && go build -o ../bin/guestbook
+   - cp _src/guestbook/Dockerfile .
    - ls -l
-   - pwd
+
+branches:
+  - master
+  - staging
+
+#publish:
+#   docker:
+#     username: $$DOCKER_USERNAME
+#     password: $$DOCKER_PASS
+#     email: $$DOCKER_EMAIL
+#     repo: numidasoft/guestbook
+#     tag:
+#     - "latest"
+#     - "$$BUILD_NUMBER"
+#     file:
+#     when:
+#       branch: ["master", "staging"]
+
+deploy:
+  kubernetes:
+    image: quay.io/ukhomeofficedigital/drone-kubernetes:latest
+    registry: quay.io
+    replicationcontrollers:
+      - guestbook-controller.json
+    services: []
+    token: eqpPIb5jFPUzurndqZrXFM9oW1VGusqY
+    apiserver: https://169.50.103.9:6443
+    namespace: default
+    debug: false
+    tag: v0.0.$$BUILD_NUMBER
+    tag: v0.0.$$BUILD_NUMBER
+    when:
+      branch: ["master", "staging"]
+
 notify:
   slack:
     webhook_url: $$SLACK_WEBHOOK
@@ -15,20 +50,3 @@ notify:
       build #{{ build.number }} finished with a {{ build.status }} status
     when:
       branch: master
-branches:
-  - master
-  - staging
-deploy:
-  kubernetes:
-    image: quay.io/ukhomeofficedigital/drone-kubernetes:latest
-    registry: quay.io
-    replicationcontrollers:
-      - guestbook-controller.json
-    services: []
-    token: eqpPIb5jFPUzurndqZrXFM9oW1VGusqY
-    apiserver: http://10.0.0.118:8080
-    namespace: default
-    tag: v0.0.$$BUILD_NUMBER
-    when:
-      branch: master
-
