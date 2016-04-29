@@ -30,15 +30,16 @@ deploy:
     registry: quay.io
     replicationcontrollers:
       - guestbook-controller.json
-    services: []
+    services:
+      - guestbook-service.json 
     token: eqpPIb5jFPUzurndqZrXFM9oW1VGusqY
-    apiserver: https://169.50.103.9:6443
+    apiserver: http://10.0.0.118:8080
     namespace: default
     debug: false
     tag: v0.0.$$BUILD_NUMBER
     tag: v0.0.$$BUILD_NUMBER
     when:
-      branch: master
+      branch: [staging, master]
 
 notify:
   slack:
