@@ -19,7 +19,7 @@ publish:
      tag:
      - "latest"
      - "$$BUILD_NUMBER"
-     file:
+     file: Dockerfile
      when:
        branch: staging
 
@@ -38,7 +38,7 @@ deploy:
     tag: v0.0.$$BUILD_NUMBER
     tag: v0.0.$$BUILD_NUMBER
     when:
-      branch: [staging, master]
+      branch: staging
 
 notify:
   slack:
