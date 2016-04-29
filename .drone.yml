@@ -1,23 +1,29 @@
 build:
-  image: golang:1.5.1
+  image: golang:1.6.1
   environment:
     - GOPATH=/guestbook-go
   commands:
+   - cd _src/ && go get && go build -o ../bin/guestbook
+   - cp _src/guestbook/Dockerfile .
    - ls -l
-   - pwd
+
 branches:
   - master
   - staging
-notify:
-  slack:
-    webhook_url: $$SLACK_WEBHOOK
-    channel: ops-team
-    username: drone.io
-    debug: true
-    template: >
-      build #{{ build.number }} finished with a {{ build.status }} status
-    when:
-      branch: master
+
+#publish:
+#   docker:
+#     username: $$DOCKER_USERNAME
+#     password: $$DOCKER_PASS
+#     email: $$DOCKER_EMAIL
+#     repo: numidasoft/guestbook
+#     tag:
+#     - "latest"
+#     - "$$BUILD_NUMBER"
+#     file:
+#     when:
+#       branch: ["master", "staging"]
+
 deploy:
   kubernetes:
     image: quay.io/ukhomeofficedigital/drone-kubernetes:latest
@@ -31,5 +37,16 @@ deploy:
     debug: false
     tag: v0.0.$$BUILD_NUMBER
     tag: v0.0.$$BUILD_NUMBER
+    when:
+      branch: ["master", "staging"]
+
+notify:
+  slack:
+    webhook_url: $$SLACK_WEBHOOK
+    channel: ops-team
+    username: drone.io
+    debug: true
+    template: >
+      build #{{ build.number }} finished with a {{ build.status }} status
     when:
       branch: master
