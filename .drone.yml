@@ -22,7 +22,7 @@ publish:
      - "$$BUILD_NUMBER"
      file:
      when:
-       branch: ["master", "staging"]
+       branch: staging
 
 deploy:
   kubernetes:
@@ -38,7 +38,7 @@ deploy:
     tag: v0.0.$$BUILD_NUMBER
     tag: v0.0.$$BUILD_NUMBER
     when:
-      branch: ["master"]
+      branch: master
 
 notify:
   slack:
@@ -49,4 +49,4 @@ notify:
     template: >
       build #{{ build.number }} finished with a {{ build.status }} status
     when:
-      branch: ["master", "staging"]
+      branch: staging
