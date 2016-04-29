@@ -4,8 +4,8 @@ build:
     - GOPATH=/guestbook-go
   commands:
    - cd _src/ && go get && go build -o ../bin/guestbook
-   - cp _src/guestbook/Dockerfile .
    - ls -l
+   - pwd
 
 branches:
   - master
